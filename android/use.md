@@ -147,7 +147,7 @@ instance.usbConnect(context, lon, lat, autoBluetoothFlag)
 
 
 ## 蓝牙方式
-- 注： 蓝牙使用 [Android-BLE库]('https://github.com/aicareles/Android-BLE'), SDK暴露Ble对象，可直接使用
+- 注： 蓝牙使用 [Android-BLE库](https://github.com/aicareles/Android-BLE), SDK暴露Ble对象，可直接使用
 ### 自动连接
 - usb方式启动时候，autoBluetoothFlag 为 true 可自动连接蓝牙
 ### 主动连接

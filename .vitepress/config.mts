@@ -2,7 +2,7 @@ import { defineConfig, type DefaultTheme } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Esurvey",
+  title: "易测",
   description: "易测",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
