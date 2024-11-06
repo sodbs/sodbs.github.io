@@ -46,7 +46,7 @@ PermissionUtils.permission(
 ```
 
 ## 添加授权监听器
-- isAuthentication 认证是否通过，如果为false, 请提示用户认证失败
+- isAuthentication 认证是否通过，如果为false, 请提示用户认证失败，在失败的情况下，天线将`不会`吐定位数据
 ```kotlin
 instance.setOnAntennaAuthListener(object: ESAntennaAuthListener {
     override fun onAuthentication(
