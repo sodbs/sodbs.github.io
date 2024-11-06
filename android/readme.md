@@ -2,7 +2,7 @@
 outline: deep
 ---
 
-# 完成Demo地址
+# 完整Demo地址
 - https://github.com/sodbs/esurvey_sdk
 # 请勿直接使用aar文件本地引入
 - 请使用Gradle方式引入

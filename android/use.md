@@ -4,6 +4,8 @@ outline: deep
 
 # 使用SDK
 - 示例：[MainActivity](https://github.com/sodbs/esurvey_sdk/blob/main/app/src/main/java/com/esurvey/esurvey_sdk_demo/MainActivity.kt)
+
+
 ## 实例化ESurvey对象
 ```kotlin{2}
 class MainActivity : ComponentActivity() {
@@ -42,6 +44,23 @@ PermissionUtils.permission(
 })
 .request()
 ```
+
+## 添加授权监听器
+- isAuthentication 认证是否通过，如果为false, 请提示用户认证失败
+```kotlin
+instance.setOnAntennaAuthListener(object: ESAntennaAuthListener {
+    override fun onAuthentication(
+        isAuthentication: Boolean,
+        message: String
+    ) {
+        if (!isAuthentication) {
+            ToastUtils.showLong("认证失败: ${message}")
+        }
+    }
+
+})
+```
+
 
 ## 添加位置改变监听器
 ```kotlin

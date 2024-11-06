@@ -37,7 +37,8 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
       items: [
         { text: '接入前必读', link: 'android/readme' },
         { text: '安装', link: 'android/install' },
-        { text: '使用', link: 'android/use' },
+        { text: '使用（天线）', link: 'android/use' },
+        { text: '使用（手机高精度）', link: 'android/mobile' },
         { text: '更新日志', link: 'android/version' },
         // { text: '测试', link: 'markdown-examples' },
       ]
