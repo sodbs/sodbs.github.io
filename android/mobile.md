@@ -32,6 +32,7 @@ dependencyResolutionManagement {
 ## gradle 文件中添加依赖
 ```Groovy
 implementation 'joda-time:joda-time:2.10.6'
+implementation 'com.blankj:utilcodex:1.31.1'
 implementation(name: 'rtk-debug', ext: 'aar')
 ```
 
