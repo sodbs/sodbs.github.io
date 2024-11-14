@@ -62,13 +62,21 @@ class MainActivity : ComponentActivity() {
 }
 ```
 
-## 运行时权限请求 （外部存储权限）
+## 运行时权限请求 （外部存储权限，所有文件访问权限）
 - Xml配置
 ```xml
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+```
+- Api29+ 需要  `requestLegacyExternalStorage`
+```xml{3}
+<application
+    ...
+    android:requestLegacyExternalStorage="true">
+    ....
+</application>
 ```
 - 运行时权限
 ```kotlin
@@ -160,12 +168,16 @@ instance.setOnMobileHighStatusChangeListener(object : ESMobileHighStatusListener
 
 ## 启动高精度定位
 - context
-- rtkUserId: 请向测科所申请
+- rtkUserId: 请向测科所申请, 传入值 应该拼入应用的用户Id
+```
+比如，向测科所申请的rtkUserId是 aaaaaaaa , 用户在贵司平台的UserId是bbbb, 则此参数应该传入 aaaaaaaa_bbbb
+```
 - rtkSecret: 请向测科所申请
 - sdCardPathByEnvironment： 日志等文件保存跟路径
 ```kotlin
 val sdCardPathByEnvironment = SDCardUtils.getSDCardPathByEnvironment()
-val rtkUserId = ""
+// rtkUserId: 向测科所申请的rtkUserId是 aaaaaaaa , 用户在贵司平台的UserId是bbbb, 则此参数应该传入 aaaaaaaa_bbbb
+val rtkUserId = "" // 请注意此参数的规则应该是  aaaaaaaa_bbbb，具体看上方解释
 val rtkSecret = ""
 instance.startMobileHighLocation(this@MainActivity, rtkUserId, rtkSecret, sdCardPathByEnvironment)
 ```

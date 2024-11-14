@@ -203,3 +203,41 @@ instance.bluetoothConnect(context, bluetoothName, lon, lat)
 
 ```
 4. 在`天线启动/断开监听器`中查看连接状态
+
+
+
+## 激光测距
+### 测距使能
+- 必须使能成功后才可使用测距功能
+```kotlin
+instance.enableMeasure(object: ESAntennaMeasureEnableListener {
+    override fun onStart() {
+        measureFlag = true
+        ToastUtils.showLong("激光测距已可用")
+    }
+})
+```
+### 测距
+- isSuccess 测量是否成功
+- distance  测量值，单位毫米
+```kotlin
+   instance.measure(object: ESAntennaMeasureListener {
+    override fun onMeasure(
+        isSuccess: Boolean,
+        distance: String
+    ) {
+        if (isSuccess) {
+            ToastUtils.showLong("距离${distance}毫米")
+            messageState = "距离${distance}毫米"
+        } else {
+            ToastUtils.showLong("测量失败")
+        }
+    }
+})
+```
+
+### 停止测量
+- 退出测距功能时，需要调用此方法，否则天线会耗电很快
+```kotlin
+instance.disableMeasure()
+```
