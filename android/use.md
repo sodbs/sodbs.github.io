@@ -236,7 +236,7 @@ instance.enableMeasure(object: ESAntennaMeasureEnableListener {
 })
 ```
 
-### 停止测量
+### 停止测距
 - 退出测距功能时，需要调用此方法，否则天线会耗电很快
 ```kotlin
 instance.disableMeasure()
