@@ -4,7 +4,7 @@ outline: deep
 
 # 使用SDK
 - 示例：[MainActivity](https://github.com/sodbs/esurvey_sdk/blob/main/app/src/main/java/com/esurvey/esurvey_sdk_demo/MainActivity.kt)
-
+- 注意SDK版本大于0.91时，需要配套使用带`授权版本`的硬件，如果你手上的机器不带授权的话，请使用0.91以下的版本
 
 ## 实例化ESurvey对象
 ```kotlin{2}
