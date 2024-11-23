@@ -8,11 +8,13 @@ outline: deep
 - 请使用Gradle方式引入
 # SDK依赖项目
 - SDK开发过程中，使用了如下依赖，如果宿主APP使用了同一个依赖，会有冲突，请使用`exclude`方法排除
+- V0.95去掉了AndroidBLE依赖，引入了RxAndroidBle
 ```Groovy
 implementation 'com.github.mik3y:usb-serial-for-android:3.2.0'
 implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 implementation 'io.reactivex.rxjava2:rxjava:2.2.17'
-api 'com.github.aicareles:Android-BLE:3.3.1'
+implementation 'com.polidea.rxandroidble2:rxandroidble:1.19.0'
+
 ```
 # SDK常量定义如下
 ```java

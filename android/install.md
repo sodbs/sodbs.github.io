@@ -38,7 +38,8 @@ include ':app'
 ## 在项目级别build file 添加易测SDK依赖
 [![](https://jitpack.io/v/sodbs/esurvey_sdk.svg)](https://jitpack.io/#sodbs/esurvey_sdk)
 ```Groovy
-  implementation 'com.github.sodbs:esurvey_sdk:Tag' // 版本号看上方
+// 版本号看上方图标后面写的多少 jitpack:版本号 如 0.95
+implementation 'com.github.sodbs:esurvey_sdk:TAG'  // 版本号看上方图标后面写的多少 jitpack:版本号 如 0.95
 ```
 ## 在AndroidManifest.xml中添加权限（需要添加运行时权限）
 ```xml

@@ -4,7 +4,6 @@ outline: deep
 
 # 使用SDK
 - 示例：[MainActivity](https://github.com/sodbs/esurvey_sdk/blob/main/app/src/main/java/com/esurvey/esurvey_sdk_demo/MainActivity.kt)
-- 注意SDK版本大于0.91时，需要配套使用带`授权版本`的硬件，如果你手上的机器不带授权的话，请使用0.91以下的版本
 
 ## 实例化ESurvey对象
 ```kotlin{2}
@@ -166,43 +165,43 @@ instance.usbConnect(context, lon, lat, autoBluetoothFlag)
 
 
 ## 蓝牙方式
-- 注： 蓝牙使用 [Android-BLE库](https://github.com/aicareles/Android-BLE), SDK暴露Ble对象，可直接使用
+- 注： 蓝牙使用 [RxBLE库](https://github.com/dariuszseweryn/RxAndroidBle) 不再使用AndroidBLE依赖 (0.95版本修改)
 ### 自动连接
 - usb方式启动时候，autoBluetoothFlag 为 true 可自动连接蓝牙
 ### 主动连接
-1. 搜索蓝牙, 将搜索到的设备保存起来，用于显示
-```kotlin{1}
-val bleInstance = instance.getBleInstance(this@MainActivity)
-bleInstance.startScan(object : BleScanCallback<BleDevice>() {
-    override fun onLeScan(device: BleDevice?, rssi: Int, scanRecord: ByteArray?) {
-        if (device == null){
-            return
+1. 搜索蓝牙, 将搜索到的设备保存起来，用于显示 蓝牙会默认搜索`5`秒
+- BluetoothInfo-> name: 蓝牙名称, address: 地址
+- 建议展示蓝牙列表前先用名称过滤
+
+```kotlin
+instance.startBluetoothScan(this@MainActivity,
+    object : ESBluetoothScanResultListener {
+        override fun onChange(info: BluetoothInfo) {
+            if (bluetoothDeviceList.find { it -> it.name == info.name } == null) {
+                bluetoothDeviceList.add(info)
+            }
         }
-        if (device.bleName.isNullOrEmpty()) {
-            return
-        }
-        if (bluetoothDeviceList.contains(device)) {
-            return
-        }
-        bluetoothDeviceList.add(device)
-    }
 })
 ```
-2. 蓝牙连接
+2. 主动停止蓝牙搜索
+```
+instance.stopBluetoothScan()
+```
+3. 蓝牙连接
 - context
-- bleDevice: 搜索到的蓝牙设备
+- bluetoothInfo: 搜索到的蓝牙设备
 - lon
 - lat
 ```kotlin
-instance.bluetoothConnect(context, bleDevice, lon, lat)
+instance.bluetoothConnect(context, bluetoothInfo, lon, lat)
 ```
-3. 也可以使用用户的蓝牙名称进行连接
+4. 也可以使用蓝牙名称进行连接
 - bluetoothName 蓝牙名称
 ```kotlin
 instance.bluetoothConnect(context, bluetoothName, lon, lat)
 
 ```
-4. 在`天线启动/断开监听器`中查看连接状态
+5. 在`天线启动/断开监听器`中查看连接状态
 
 
 
