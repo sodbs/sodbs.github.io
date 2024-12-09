@@ -166,6 +166,18 @@ instance.usbConnect(context, lon, lat, autoBluetoothFlag)
 
 ## 蓝牙方式
 - 注： 蓝牙使用 [RxBLE库](https://github.com/dariuszseweryn/RxAndroidBle) 不再使用AndroidBLE依赖 (0.95版本修改)
+- 使用蓝牙前，需要先提示用户打开蓝牙
+```kotlin
+val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+if (bluetoothAdapter == null) {
+    // 设备不支持蓝牙
+    Toaster.show("设备不支持蓝牙")
+} else if (!bluetoothAdapter.isEnabled()) {
+    // 蓝牙未启用
+    Toaster.show("请先开启蓝牙")
+    return
+}
+```
 ### 自动连接
 - usb方式启动时候，autoBluetoothFlag 为 true 可自动连接蓝牙
 ### 主动连接
