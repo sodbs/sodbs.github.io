@@ -174,13 +174,12 @@ instance.setOnMobileHighStatusChangeListener(object : ESMobileHighStatusListener
 比如，向测科所申请的rtkUserId是 aaaaaaaa , 用户在贵司平台的UserId是bbbb, 则此参数应该传入 aaaaaaaa_bbbb
 ```
 - rtkSecret: 请向测科所申请
-- sdCardPathByEnvironment： 日志等文件保存跟路径
 ```kotlin
 val sdCardPathByEnvironment = SDCardUtils.getSDCardPathByEnvironment()
 // rtkUserId: 向测科所申请的rtkUserId是 aaaaaaaa , 用户在贵司平台的UserId是bbbb, 则此参数应该传入 aaaaaaaa_bbbb
 val rtkUserId = "" // 请注意此参数的规则应该是  aaaaaaaa_bbbb，具体看上方解释
 val rtkSecret = ""
-instance.startMobileHighLocation(this@MainActivity, rtkUserId, rtkSecret, sdCardPathByEnvironment)
+instance.startMobileHighLocation(this@MainActivity, rtkUserId, rtkSecret)
 ```
 
 ## 结束高精度定位
