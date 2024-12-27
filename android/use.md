@@ -2,8 +2,15 @@
 outline: deep
 ---
 
-# 使用SDK
+# 请向问北平台申请Key和secret
+- 使用SDK需要获取SDKToken, 文档如下  [AppToken获取方法](https://open.sobds.com/234680651e0) [SDKToken获取方法](https://open.sobds.com/234680651e0)
+- secret 不应该放在客户端，应该放在服务端
+- 如有问题，请查看Demo
+
+# Demo
 - 示例：[MainActivity](https://github.com/sodbs/esurvey_sdk/blob/main/app/src/main/java/com/esurvey/esurvey_sdk_demo/MainActivity.kt)
+- 本地运行Demo需要在 com.esurvey.esurvey_sdk.utils.Api 里面 填写自己申请的Key 和 secret
+
 
 ## 实例化ESurvey对象
 ```kotlin{2}
@@ -11,6 +18,12 @@ class MainActivity : ComponentActivity() {
     val instance = ESurvey.getInstance()
     ...
 }
+```
+
+## 设置Key
+- 全局设置一次即可, 请在App初始化中传入，可在Application或者主Activity中Oncreate方法传入。Key值请向问北位置平台申请, 使用SDK前必须传入Key
+```kotlin
+ESurvey.getInstance().setKey(Api.key)
 ```
 
 ## 运行时权限请求
@@ -154,13 +167,15 @@ instance.setOnUsbAttachChangeListener(object : ESUsbAttachChangeListener {
 ```
 
 
-### 连接启动天线
+### 连接启动天线 (V1.5版本有更新，新增了两个参数)
 - context
 - lon 经度
 - lat 纬度
 - autoBluetoothFlag 是否自动连接蓝牙 `如果传true, SDK将在Usb模式启动完成后自动连接蓝牙`
+- hostAppUserId: 用户在贵司平台的UserId(宿主App的UserId)
+- sdkToken: 先获取AppToken，再由AppToken获取SDkTOken  [AppToken获取方法](https://open.sobds.com/234680651e0) [SDKToken获取方法](https://open.sobds.com/234680651e0)
 ```kotlin
-instance.usbConnect(context, lon, lat, autoBluetoothFlag)
+instance.usbConnect(context, lon, lat, autoBluetoothFlag, hostAppUserId, sdkToken)
 ```
 
 
@@ -180,7 +195,7 @@ if (bluetoothAdapter == null) {
 ```
 ### 自动连接
 - usb方式启动时候，autoBluetoothFlag 为 true 可自动连接蓝牙
-### 主动连接
+### 主动连接 
 1. 搜索蓝牙, 将搜索到的设备保存起来，用于显示 蓝牙会默认搜索`5`秒
 - BluetoothInfo-> name: 蓝牙名称, address: 地址
 - 建议展示蓝牙列表前先用名称过滤
@@ -199,18 +214,20 @@ instance.startBluetoothScan(this@MainActivity,
 ```
 instance.stopBluetoothScan()
 ```
-3. 蓝牙连接
+3. 蓝牙连接 (V1.5版本有更新，新增了两个参数)
 - context
 - bluetoothInfo: 搜索到的蓝牙设备
 - lon
 - lat
+- hostAppUserId: 用户在贵司平台的UserId(宿主App的UserId)
+- sdkToken: 先获取AppToken，再由AppToken获取SDkTOken  [AppToken获取方法](https://open.sobds.com/234680651e0) [SDKToken获取方法](https://open.sobds.com/234680651e0)
 ```kotlin
-instance.bluetoothConnect(context, bluetoothInfo, lon, lat)
+instance.bluetoothConnect(context, bluetoothInfo, lon, lat, hostAppUserId, sdkToken)
 ```
 4. 也可以使用蓝牙名称进行连接
 - bluetoothName 蓝牙名称
 ```kotlin
-instance.bluetoothConnect(context, bluetoothName, lon, lat)
+instance.bluetoothConnect(context, bluetoothName, lon, lat, hostAppUserId, sdkToken)
 
 ```
 5. 在`天线启动/断开监听器`中查看连接状态

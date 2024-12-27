@@ -1,7 +1,14 @@
 ---
 outline: deep
 ---
+# 请向问北平台申请Key和secret
+- 使用SDK需要获取SDKToken, 文档如下  [AppToken获取方法](https://open.sobds.com/234680651e0) [SDKToken获取方法](https://open.sobds.com/234680651e0)
+- secret 不应该放在客户端，应该放在服务端
+- 如有问题，请查看Demo
 
+# Demo
+- 示例：[MainActivity](https://github.com/sodbs/esurvey_sdk/blob/main/app/src/main/java/com/esurvey/esurvey_sdk_demo/MainActivity.kt)
+- 本地运行Demo需要在 com.esurvey.esurvey_sdk.utils.Api 里面 填写自己申请的Key 和 secret
 
 # 安装
 - 如需使用手机高精度，需添加额外的依赖
@@ -61,6 +68,12 @@ class MainActivity : ComponentActivity() {
     val instance = ESurvey.getInstance()
     ...
 }
+```
+
+## 设置Key
+- 全局设置一次即可, 请在App初始化中传入，可在Application或者主Activity中Oncreate方法传入。Key值请向问北位置平台申请, 使用SDK前必须传入Key
+```kotlin
+ESurvey.getInstance().setKey(Api.key)
 ```
 
 ## 运行时权限请求 （外部存储权限，所有文件访问权限）
@@ -168,18 +181,14 @@ instance.setOnMobileHighStatusChangeListener(object : ESMobileHighStatusListener
 
 
 ## 启动高精度定位
+- 在V1.5版本有不兼容更新
 - context
-- rtkUserId: 请向测科所申请, 传入值 应该拼入应用的用户Id
-```
-比如，向测科所申请的rtkUserId是 aaaaaaaa , 用户在贵司平台的UserId是bbbb, 则此参数应该传入 aaaaaaaa_bbbb
-```
-- rtkSecret: 请向测科所申请
+- hostAppUserId: 用户在贵司平台的UserId(宿主App的UserId)
+- sdkToken: 先获取AppToken，再由AppToken获取SDkTOken  [AppToken获取方法](https://open.sobds.com/234680651e0) [SDKToken获取方法](https://open.sobds.com/234680651e0)
 ```kotlin
-val sdCardPathByEnvironment = SDCardUtils.getSDCardPathByEnvironment()
-// rtkUserId: 向测科所申请的rtkUserId是 aaaaaaaa , 用户在贵司平台的UserId是bbbb, 则此参数应该传入 aaaaaaaa_bbbb
-val rtkUserId = "" // 请注意此参数的规则应该是  aaaaaaaa_bbbb，具体看上方解释
-val rtkSecret = ""
-instance.startMobileHighLocation(this@MainActivity, rtkUserId, rtkSecret)
+val hostAppUserId = "" 用户在贵司平台的UserId
+val sdkToken = ""  [SDKToken获取方法](https://open.sobds.com/234680651e0)
+instance.startMobileHighLocation(this@MainActivity, hostAppUserId, sdkToken)
 ```
 
 ## 结束高精度定位

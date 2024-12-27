@@ -26,6 +26,22 @@ outline: deep
 | 1.1     | 2024-12-09       |  解决蓝牙模式下无法使用激光测距的Bug    |
 | 1.2     | 2024-12-13       |  手机高精度默认放根目录    |
 | 1.4     | 2024-12-23       |  高程修正    |
+| 1.5     | 2024-12-27       |  更新认证方式    |
+
+## V1.5 更新指南
+- V1.5版本为不兼容更新，需要改动代码，参考如下
+- 名词解释 hostAppUserId: 用户在贵司平台的UserId(宿主App的UserId)  | sdkToken : 使用平台给的 key 和 secret 请求得到的sdkToken
+1. 新增设置Key的方法，请在App初始化中传入，可在Application或者主Activity中Oncreate方法传入。Key值请向问北位置平台申请, 使用SDK前必须传入Key
+```
+ESurvey.getInstance().setKey(Api.key)
+```
+2. 手机高精度方法修改 | 详细使用请查看手机高精度章节
+- startMobileHighLocation 方法参数由原来 context, rtkUserId, rtkSecret 修改为 context hostAppUserId  sdkToken , 详细使用请查看手机高精度章节
+
+3. 天线使用方法修改 | 详细使用请查看天线使用章节
+- usbConnect 方法参数由原来 context, lon , lat, autoBluetoothFlag 修改为  context, lon , lat, autoBluetoothFlag, hostAppUserId , sdkToken 新增hostAppUserId还有sdkToken参数
+- 同理 bluetoothConnect 方法也在原有基础上新增了 hostAppUserId , sdkToken  两个入参
+
 
 
 ## V1.0 更新指南

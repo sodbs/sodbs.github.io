@@ -4,6 +4,7 @@ outline: deep
 
 # 完整Demo地址
 - https://github.com/sodbs/esurvey_sdk
+# 请向问北平台申请Key和secret
 # 请勿直接使用aar文件本地引入
 - 请使用Gradle方式引入
 # SDK依赖项目
