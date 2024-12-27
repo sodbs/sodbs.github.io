@@ -30,7 +30,7 @@ outline: deep
 
 ## V1.5 更新指南
 - V1.5版本为不兼容更新，需要改动代码，参考如下
-- 名词解释 hostAppUserId: 用户在贵司平台的UserId(宿主App的UserId)  | sdkToken : 使用平台给的 key 和 secret 请求得到的sdkToken
+- 名词解释 hostAppUserId: 用户在贵司平台的UserId(宿主App的UserId)  | sdkToken : 使用平台给的 key 和 secret 请求得到的sdkToken  [AppToken获取方法](https://open.sobds.com/234680651e0) [SDKToken获取方法](https://open.sobds.com/234680651e0)
 1. 新增设置Key的方法，请在App初始化中传入，可在Application或者主Activity中Oncreate方法传入。Key值请向问北位置平台申请, 使用SDK前必须传入Key
 ```
 ESurvey.getInstance().setKey(Api.key)

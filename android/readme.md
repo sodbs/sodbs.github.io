@@ -9,6 +9,9 @@ outline: deep
 
 
 # 请向问北平台申请Key和secret
+- 使用SDK需要获取`SDKToken`, 文档如下  [AppToken获取方法](https://open.sobds.com/234680651e0) [SDKToken获取方法](https://open.sobds.com/234680651e0)
+- token获取建议全部放在服务端
+
 # 请勿直接使用aar文件本地引入
 - 请使用Gradle方式引入
 # SDK依赖项目
