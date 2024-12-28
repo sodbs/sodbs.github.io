@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
 }
 ```
 
-## 设置Key
+## 设置Key (v1.5新增)
 - 全局设置一次即可, 请在App初始化中传入，可在Application或者主Activity中Oncreate方法传入。Key值请向问北位置平台申请, 使用SDK前必须传入Key
 ```kotlin
 ESurvey.getInstance().setKey(Api.key)
@@ -87,8 +87,8 @@ instance.setOnLocationStateChangeListener(object : ESLocationChangeListener {
 | ----------- | ----------- | ----------- |
 | lon      | 经度       |       |
 | lat   | 纬度        |        |
-| height   | 高层        |        |
-| yInaccuracies   | 高层误差        |        |
+| height   | 高程        |        |
+| yInaccuracies   | 高程误差        |        |
 | xInaccuracies   | 水平误差        |        |
 | locationShow   | 格式化后的经纬度显示，保留7位小数后拼在了一起        |   String.format("%.7f", lat) + " , " + String.format("%.7f", lon)     |
 | pdop   | pdop        |        |
